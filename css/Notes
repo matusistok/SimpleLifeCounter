@@ -1,0 +1,8 @@
+Skončil som pri vytváraní counterov, mám v pláne to urobiť 
+take že každú scénu vygenerujem akoby nanovo podľa výberu hráča
+
+Treba:
+Vytvoriť genratívny aktuálny počet životov prestaviteľný na základe výberu
+a na základe pridávania a odoberania
+Meniace sa pozadia 
+všetko viažúce sa na id hráča

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="screen-orientation" content="portrait"> 
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <title>TCG Life Counter</title>
+</head>
+<body> 
+  
+  <div class="top">
+    <div id="topContainer">
+      <div class="controller" id="playerCount">
+        <img src="images/playersW.png" alt="Player Count">
+      </div>
+      <div class="controller" id="lifePreset">
+        <img src="images/hearthW.png" alt="Life Preset">
+      </div>
+      <div class="controller" id="reset">
+        <img src="images/replayW.png" alt="Reset">
+      </div>
+      <div class="controller" id="diceThrow">
+        <img src="images/diceW.png" alt="Dice Throw">
+      </div>
+    </div>
+  </div>
+
+  <div id="playerCountPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="closePlayerCountPopup">&times;</span>
+      <h2>How Many Players?</h2>
+      <div class="popup-options">
+        <button onclick="setPlayerCount(2)">2</button>
+        <button onclick="setPlayerCount(3)">3</button>
+        <button onclick="setPlayerCount(4)">4</button>
+        <button onclick="setPlayerCount(5)">5</button>
+        <button onclick="setPlayerCount(6)">6</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lifeCountPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="closeLifeCountPopup">&times;</span>
+      <h2>Select Life Count</h2>
+      <div class="popup-options">
+        <button onclick="setLifeCount(20)">20</button>
+        <button onclick="setLifeCount(25)">25</button>
+        <button onclick="setLifeCount(30)">30</button>
+        <button onclick="setLifeCount(40)">40</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="colorPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="closeColorPopup">&times;</span>
+      <h2>Select Color</h2>
+      <div class="popup-options">
+        <button style="background-color: #F9F4CB;" onclick="setColor(1)">p</button>
+        <button style="background-color: grey;" onclick="setColor(2)">s</button>
+        <button style="background-color: #F8A37A;" onclick="setColor(3)">m</button>
+        <button style="background-color: lightblue;" onclick="setColor(4)">i</button>
+        <button style="background-color: #9FC79A;" onclick="setColor(5)">f</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="counters">
+      <div class="counter" id="P2">
+        <div class="playerCounter" id="player1">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+            <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP1"></div>
+          <div class="lifeChange" id="lifeChangeP1"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>
+        </div>
+        <div class="playerCounter" id="player2">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+            <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP2"></div>
+          <div class="lifeChange" id="lifeChangeP2"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>
+        </div>
+      </div>
+    
+      <div class="counter" id="P3">
+        <div class="playerCounter" id="player1">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP1"></div>
+          <div class="lifeChange" id="lifeChangeP1"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>
+        </div>
+  
+        <div class="playerCounter" id="player2">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP2"></div>
+          <div class="lifeChange" id="lifeChangeP2"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+  
+        <div class="playerCounter" id="player3">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP3"></div>
+          <div class="lifeChange" id="lifeChangeP3"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+      </div>
+  
+      <div class="counter" id="P4">
+        <div class="playerCounter" id="player1">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP1"></div>
+          <div class="lifeChange" id="lifeChangeP1"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>
+        </div>
+    
+        <div class="playerCounter" id="player2">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP2"></div>
+          <div class="lifeChange" id="lifeChangeP2"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+    
+        <div class="playerCounter" id="player3">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP3"></div>
+          <div class="lifeChange" id="lifeChangeP3"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+    
+        <div class="playerCounter" id="player4">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP4"></div>
+          <div class="lifeChange" id="lifeChangeP4"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+      </div>
+  
+      <div class="counter" id="P5">
+        <div class="playerCounter" id="player1">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP1"></div>
+          <div class="lifeChange" id="lifeChangeP1"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>
+        </div>
+    
+        <div class="playerCounter" id="player2">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP2"></div>
+          <div class="lifeChange" id="lifeChangeP2"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+    
+        <div class="playerCounter" id="player3">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP3"></div>
+          <div class="lifeChange" id="lifeChangeP3"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+    
+        <div class="playerCounter" id="player4">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+          <div class="minus">
+             <img src="images/minus1.png" alt="-">
+          </div>
+          <div class="currentLife" id="currentLifeP4"></div>
+          <div class="lifeChange" id="lifeChangeP4"></div>
+          <div class="plus">
+            <img src="images/plus.png" alt="+">
+          </div>  
+        </div>
+
+        <div class="playerCounter" id="player5">
+          <div class="changeColor">
+            <img src="images/color.png" alt="Color Select">
+          </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP5"></div>
+        <div class="lifeChange" id="lifeChangeP5"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+    </div>
+
+    <div class="counter" id="P6">
+      <div class="playerCounter" id="player1">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP1"></div>
+        <div class="lifeChange" id="lifeChangeP1"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>
+      </div>
+
+      <div class="playerCounter" id="player2">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP2"></div>
+        <div class="lifeChange" id="lifeChangeP2"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+
+      <div class="playerCounter" id="player3">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP3"></div>
+        <div class="lifeChange" id="lifeChangeP3"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+
+      <div class="playerCounter" id="player4">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP4"></div>
+        <div class="lifeChange" id="lifeChangeP4"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+
+      <div class="playerCounter" id="player5">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP5"></div>
+        <div class="lifeChange" id="lifeChangeP5"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+
+      <div class="playerCounter" id="player6">
+        <div class="changeColor">
+          <img src="images/color.png" alt="Color Select">
+        </div>
+        <div class="minus">
+           <img src="images/minus1.png" alt="-">
+        </div>
+        <div class="currentLife" id="currentLifeP6"></div>
+        <div class="lifeChange" id="lifeChangeP6"></div>
+        <div class="plus">
+          <img src="images/plus.png" alt="+">
+        </div>  
+      </div>
+
+    </div>
+
+  </div>
+
+<script src="script/source.js"></script>
+</body>
+</html>

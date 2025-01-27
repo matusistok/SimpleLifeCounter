@@ -1,0 +1,305 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;    
+  height: 100vh;
+  margin: 0;
+  background-color: #1d1d1d;
+}
+
+.top {
+  height: 10%;
+  background-color: #070707;
+  text-align: center;
+}
+
+.top #topContainer{
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  align-items: center;
+  justify-items: center;
+}
+
+.top #topContainer .controller{
+  padding-top: 10%;
+}
+
+.top #topContainer .controller:hover{
+  cursor: pointer; 
+}
+
+.top #topContainer .controller img{
+  height: 8vw;
+  width: auto;
+  max-width: 100%;
+}
+
+#playerCount{
+  grid-column: 1;
+}
+#LifePreset{
+  grid-column: 2;
+}
+#Reset{
+  grid-column: 3;
+}
+#diceThrow{
+  grid-column: 4;
+}
+
+.popup {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 10%;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.popup-content {
+  background-color: aliceblue;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 300px; 
+  border-radius: 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-options button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-options button:hover {
+  opacity: 0.8;
+}
+
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/*lifeChange*/
+.lifeChange {
+  font-size: 1.5em;
+  color: rgb(153, 153, 153);
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/*counters*/
+.counters{
+  margin-top: 5%;
+}
+
+.counters .counter{
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* Two rows for two players */
+  grid-template-columns: 1fr; /* One column spanning the width */
+  gap: 10px; /* Optional spacing between rows */
+  height: calc(100vh - 10%); /* Remaining screen height below top container */
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.playerCounter{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Minus, Life, Plus */
+  grid-row: 1fr 2fr 1fr;
+  align-items: center; /* Center content vertically */
+  justify-items: center; /* Center content horizontally */
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.counters .counter .playerCounter .minus img{ 
+  height: 40px;
+  width: 40px;
+}
+
+.counters .counter .playerCounter .plus img{ 
+  height: 40px;
+  width: 40px;
+}
+
+.counters .counter .playerCounter .changeColor img{ 
+  height: 40px;
+  width: 40px;
+}
+
+.changeColor{
+  grid-column: 3;
+  grid-row: 1;
+  text-align: center;
+  margin-bottom: 40%;
+}
+
+.minus{
+  grid-column: 1;
+  grid-row: 2;
+  text-align: center;
+}
+
+.plus{
+  grid-column: 3;
+  grid-row: 2;
+  text-align: center;
+}
+
+.currentLife{
+  font-size: 2em;
+  grid-column: 2;
+  grid-row: 2;
+  text-align: center;
+}
+
+#P2{
+  /*display: none;*/
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* Two rows for two players */
+  grid-template-columns: 1fr; /* One column spanning the width */
+  gap: 10px; /* Optional spacing between rows */
+  height: calc(100vh - 10%); /* Remaining screen height below top container */
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+#P2 #player1{
+  font-size: 20px;
+  background-color: aliceblue;
+}
+
+#P2 #player2{
+  font-size: 20px;
+  background-color: aliceblue;
+}
+
+#P3{
+  display: none;
+}
+
+#P3 #player1{
+  font-size: 20px;
+}
+
+#P3 #player2{
+  font-size: 20px;
+}
+
+#P3 #player3{
+  font-size: 20px;
+}
+
+#P4{
+  display: none;
+}
+
+#P4 #player1{
+  font-size: 20px;
+}
+
+#P4 #player2{
+  font-size: 20px;
+}
+
+#P4 #player3{
+  font-size: 20px;
+}
+
+#P4 #player4{
+  font-size: 20px;
+}
+
+#P5{
+  display: none;
+}
+
+#P5 #player1{
+  font-size: 20px;
+}
+
+#P5 #player2{
+  font-size: 20px;
+}
+
+#P5 #player3{
+  font-size: 20px;
+}
+
+#P5 #player4{
+  font-size: 20px;
+}
+
+#P5 #player5{
+  font-size: 20px;
+}
+
+#P6{
+  display: none;
+}
+
+#P6 #player1{
+  font-size: 20px;
+}
+
+#P6 #player2{
+  font-size: 20px;
+}
+
+#P6 #player3{
+  font-size: 20px;
+}
+
+#P6 #player4{
+  font-size: 20px;
+}
+
+#P6 #player5{
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .top {
+    height: 5%;
+  }
+
+  .top #topContainer .controller img {
+    height: 12vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .top {
+    height: 10%;
+  }
+
+  .top #topContainer .controller img {
+    height: 15vw;
+  }
+}
