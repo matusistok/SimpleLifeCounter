@@ -56,10 +56,10 @@ closeColorCountPopup.addEventListener('click', () => {
 });
 
 function initializeLifeCounters() {
-    const lifeCounters = document.querySelectorAll('.currentLife');
-    lifeCounters.forEach(lifeCounter => {
-        lifeCounter.textContent = 20;
-    });
+  const lifeCounters = document.querySelectorAll('.currentLife');
+  lifeCounters.forEach(lifeCounter => {
+      lifeCounter.textContent = lifeCount;
+  });
 }
 
 function assignColorsToPlayers() {
@@ -162,6 +162,7 @@ function setPlayerCount(count) {
 
 // Reset life counters
 function resetGame() {
+  // Reset life counters to the chosen starting life
   initializeLifeCounters();
 
   // Clear life change displays
