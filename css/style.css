@@ -101,7 +101,7 @@ body {
 /*lifeChange*/
 .lifeChange {
   font-size: 1.5em;
-  color: rgb(153, 153, 153);
+  color: rgb(71, 71, 71);
   grid-column: 2;
   grid-row: 1;
   text-align: center;

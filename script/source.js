@@ -194,25 +194,41 @@ function resetGame() {
 }
 
 // Dice throw
-diceButton.addEventListener('click', () => {
-  const playerCount = document.querySelectorAll('.playerCounter').length;
-  let playerScores = Array(playerCount).fill(0);
-  
-  // Function to roll dice for all players
-  function rollDice() {
-    for (let i = 0; i < playerCount; i++) {
-      playerScores[i] = Math.floor(Math.random() * 12) + 1;
-      const lifeChangeElement = document.querySelector(`#lifeChangeP${i + 1}`);
-      showLifeChange(lifeChangeElement, playerScores[i], true);
+document.querySelector('#diceThrow').addEventListener('click', () => {
+  const players = Array.from(document.querySelectorAll('.playerCounter')).filter(player => player.closest('.counter').style.display !== 'none');
+  let playerScores = Array(players.length).fill(0);
+
+  function rollDice(round) {
+    players.forEach((player, index) => {
+      playerScores[index] = Math.floor(Math.random() * 20) + 1;
+      const lifeChangeElement = player.querySelector('.lifeChange');
+      showLifeChange(lifeChangeElement, playerScores[index], true);
+    });
+
+    if (round < 4) {
+      setTimeout(() => rollDice(round + 1), 700); // Recursive delay
+    } else {
+      handleTiebreaker();
     }
   }
 
-  // Main logic for 5 rounds of dice throws
-  for (let i = 0; i < 5; i++) {
-    setTimeout(() => {
-      rollDice();
-    }, i * 500);
+  function handleTiebreaker() {
+    let maxScore = Math.max(...playerScores);
+    let tiedPlayers = playerScores.map((score, index) => score === maxScore ? index : -1).filter(index => index !== -1);
+    
+    if (tiedPlayers.length > 1) {
+      setTimeout(() => {
+        tiedPlayers.forEach(index => {
+          playerScores[index] = Math.floor(Math.random() * 20) + 1;
+          const lifeChangeElement = players[index].querySelector('.lifeChange');
+          showLifeChange(lifeChangeElement, playerScores[index], true);
+        });
+        handleTiebreaker(); // Recursively check for ties again
+      }, 700);
+    }
   }
+
+  rollDice(0);
 });
 
   // Restore original appearance of player counters
